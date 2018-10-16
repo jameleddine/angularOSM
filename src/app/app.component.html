@@ -1,20 +1,40 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
+<aol-map [width]="'50%'" [height]="'50%'">
+    <aol-view [zoom]="zoom">
+      <!-- change coordonate (x,y) with your owen adress-->
+      <aol-coordinate [x]="10.1595" [y]="36.8503" [srid]="'EPSG:4326'"></aol-coordinate>
+    </aol-view>
+    <aol-layer-tile [opacity]="opacity">
+      <aol-source-osm></aol-source-osm>
+    </aol-layer-tile>
+    <aol-layer-vector [opacity]="opacity">
+      <aol-source-vector>
+        <aol-feature>
+          <aol-geometry-point>
+            <!-- change coordonate (x,y) with your owen adress to display the point-->
+            <aol-coordinate [x]="10.1595" [y]="36.8503" [srid]="'EPSG:4326'"></aol-coordinate>
+          </aol-geometry-point>
+          <aol-style>
+            <aol-style-circle [radius]="10">
+              <aol-style-stroke [color]="'white'" [width]="width"></aol-style-stroke>
+              <aol-style-fill [color]="'red'"></aol-style-fill>
+            </aol-style-circle>
+          </aol-style>
+        </aol-feature>
+        <aol-feature>
+          <aol-geometry-point>
+            <aol-coordinate [x]="5.1" [y]="45.1" [srid]="'EPSG:4326'"></aol-coordinate>
+          </aol-geometry-point>
+          <aol-style>
+            <aol-style-icon
+              [src]="'assets/marker.png'"
+              [anchor]="[0.5, 1]"
+              [anchorXUnits]="'fraction'" [anchorYUnits]="'fraction'"
+              [scale]="0.1"
+              [anchorOrigin]="'top-left'">
+            </aol-style-icon>
+          </aol-style>
+        </aol-feature>
+      </aol-source-vector>
+    </aol-layer-vector>
+  </aol-map>
+<span>zoom:</span><button (click)="increaseZoom()">+</button><button (click)="decreaseZoom()">-</button><br>
